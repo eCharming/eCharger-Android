@@ -1,4 +1,4 @@
-package cc.echarger.echarger.ui.component;
+package cc.echarger.echarger;
 
 import android.app.Activity;
 import android.os.Build;

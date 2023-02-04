@@ -3,9 +3,7 @@ package cc.echarger.echarger;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import cc.echarger.echarger.databinding.ActivityMainBinding;
-import cc.echarger.echarger.ui.component.StatusBar;
 import cc.echarger.echarger.ui.util.MoveBoxUtil;
-import cc.echarger.echarger.ui.util.TopNaviUtil;
 
 public class MainActivity extends AppCompatActivity {
 

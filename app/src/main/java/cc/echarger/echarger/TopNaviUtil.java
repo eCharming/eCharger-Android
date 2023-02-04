@@ -1,4 +1,4 @@
-package cc.echarger.echarger.ui.util;
+package cc.echarger.echarger;
 
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import cc.echarger.echarger.ui.R;
+import cc.echarger.echarger.ui.util.UnitConversionUtil;
 
 public class TopNaviUtil {
     private final Activity context; //activity的上下文
