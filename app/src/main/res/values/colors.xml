@@ -12,5 +12,8 @@
     <color name="transparent">#00000000</color>
 
     <color name="main_color1">#FF66CDAA</color>
+    <color name="sub_color1">#FFA6EC92</color>
+
+
     <color name="main_color2">#FF32C8D2</color>
 </resources>

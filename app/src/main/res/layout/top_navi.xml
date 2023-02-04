@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:clipChildren="false"
+>
     <TextView
             android:id="@+id/occupy"
             android:layout_width="match_parent"
@@ -12,16 +14,246 @@
             android:background="@color/main_color1"/>
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:paddingTop="5dp"
             android:background="@color/main_color1"
-            android:orientation="vertical">
+    >
         <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
+                android:layout_marginLeft="5dp"
         >
-
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="上海"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+            />
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="阴 4℃"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+            />
         </LinearLayout>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/radius5"
+                android:text="易插"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:textSize="17dp"
+                android:textStyle="bold"
+        />
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fold_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+    >
+        <LinearLayout
+                android:id="@+id/bottom_bar"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:background="@drawable/radius6"
+                android:clipChildren="false"
+
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/choice_bar"
+                android:orientation="horizontal"
+        />
+
+        <RelativeLayout
+                android:id="@+id/choice_bar"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@color/main_color1"
+                android:clipChildren="false"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/bottom_bar"
+        >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/choice_ball"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/radius7"
+                    android:layout_alignParentBottom="true"
+                    android:clipChildren="false"
+            >
+
+                <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="13dp"
+                        app:layout_constraintRight_toLeftOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginRight="-3dp"
+                        android:background="@color/sub_color1"
+
+                />
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintRight_toLeftOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginRight="-3dp"
+                    android:background="@drawable/radius9"
+
+                />
+                <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="13dp"
+                        app:layout_constraintLeft_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginLeft="-3dp"
+                        android:background="@color/sub_color1"
+
+                />
+                <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:layout_constraintLeft_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginLeft="-3dp"
+                        android:background="@drawable/radius10"
+
+                />
+
+                <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/radius8"
+                />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:clipChildren="false"
+            >
+                <RelativeLayout
+                        android:id="@+id/order"
+                        android:layout_width="0dp"
+                        android:layout_height="70dp"
+                        android:layout_weight="1"
+                        android:clipChildren="false"
+
+                >
+                    <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_centerInParent="true"
+                            android:background="@color/main_color2"
+                    />
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="订单"
+                            android:textColor="@color/white"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="-30dp"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                    />
+                </RelativeLayout>
+                <RelativeLayout
+                        android:id="@+id/chat"
+                        android:layout_width="0dp"
+                        android:layout_height="70dp"
+                        android:layout_weight="1"
+                        android:clipChildren="false"
+
+                >
+                    <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:background="@color/main_color2"
+                            android:layout_centerInParent="true"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="聊天"
+                            android:textColor="@color/white"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="-30dp"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                    />
+                </RelativeLayout>
+                <RelativeLayout
+                        android:id="@+id/find"
+                        android:layout_width="0dp"
+                        android:layout_height="70dp"
+                        android:layout_weight="1"
+                        android:clipChildren="false"
+
+                >
+                    <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_centerInParent="true"
+                            android:background="@color/main_color2"
+                    />
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="发现"
+                            android:textColor="@color/white"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="-30dp"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                    />
+                </RelativeLayout>
+                <RelativeLayout
+                        android:id="@+id/my"
+                        android:layout_width="0dp"
+                        android:layout_height="70dp"
+                        android:layout_weight="1"
+                        android:clipChildren="false"
+
+                >
+                    <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_centerInParent="true"
+                            android:background="@color/main_color2"
+                    />
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="我的"
+                            android:textColor="@color/white"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="-30dp"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                    />
+                </RelativeLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
     
 </LinearLayout>

@@ -10,6 +10,7 @@ import android.view.animation.TranslateAnimation;
 import cc.echarger.echarger.component.MovableLinearLayout;
 import cc.echarger.echarger.component.StatusBar;
 import cc.echarger.echarger.util.MoveBoxUtil;
+import cc.echarger.echarger.util.TopNaviUtil;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -23,19 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
-
-    private float originY;   //手指初始坐标
-    private float lastY;    //上一个坐标
-    private float boxY;   //模块的起始坐标
-    private int screenHeight;  //屏幕高度
-    private float heightUpperBounds; //上限高度
-    private float heightLowerBounds; //下限高度
-
-    public static float dp2px(Context context, float dpValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return  (dpValue * scale + 0.5f);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,65 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-
-        MoveBoxUtil moveBoxUtil=new MoveBoxUtil(MainActivity.this);
-
-
-//        Display display = getWindowManager().getDefaultDisplay();
-//        Point point = new Point();
-//        display.getSize(point);
-//
-//        //获取status_bar_height资源的ID
-//        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-//        final int statusBarHeight = getResources().getDimensionPixelSize(resourceId);
-//        Log.e("-------", "状态栏-方法1:" + statusBarHeight);
-//
-//        screenHeight = display.getHeight()+statusBarHeight;
-//
-//        heightUpperBounds=screenHeight-dp2px(MainActivity.this,700)+statusBarHeight/2;
-//        heightLowerBounds=screenHeight-dp2px(MainActivity.this,100+20+20)+statusBarHeight/2;
-//
-//        Log.e("TAG", "height:"+screenHeight );
-//
-//        View btn1 = findViewById(R.id.btn1);
-//        btn1.setOnClickListener(v->{
-//            Log.e("btn1","1");
-//        });
-//
-//        MovableLinearLayout moveBox = findViewById(R.id.move_box);
-//
-//        Log.e("TAG", ":"+moveBox.getY() );
-//
-//        moveBox.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View view, MotionEvent event) {
-//                switch (event.getAction()) {
-//                    case MotionEvent.ACTION_DOWN: // 触点按下
-//                        boxY= moveBox.getY();
-//                        lastY=originY= event.getRawY();
-//                        break;
-//                    case MotionEvent.ACTION_MOVE: // 触点移动
-//                        float offsetY=event.getRawY()-lastY;
-//
-//                        if(boxY+offsetY>=heightUpperBounds
-//                                &&boxY+offsetY<heightLowerBounds){
-//                            boxY+=offsetY;
-//                            moveBox.setY(boxY);
-//                        }
-//
-//                        lastY= event.getRawY();
-//                        break;
-//                    case MotionEvent.ACTION_UP: // 触点放开
-//                        float endY=event.getRawY();
-//
-////                        if()
-////                        Animation translateAnimation = new TranslateAnimation(0,0,0,500);
-//
-//                }
-//                return true;
-//            }
-//        });
 
 //        setSupportActionBar(binding.toolbar);
 //
@@ -119,6 +48,17 @@ public class MainActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus){
+        // TODO Auto-generated method stub
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus){
+            MoveBoxUtil moveBoxUtil=new MoveBoxUtil(MainActivity.this);
+            TopNaviUtil topNaviUtil = new TopNaviUtil(MainActivity.this);
+            moveBoxUtil.setTopNaviUtil(topNaviUtil);
+        }
     }
 
     @Override

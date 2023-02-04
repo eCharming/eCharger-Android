@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Point;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -14,6 +15,8 @@ import android.view.animation.TranslateAnimation;
 import cc.echarger.echarger.MainActivity;
 import cc.echarger.echarger.R;
 import cc.echarger.echarger.component.MovableLinearLayout;
+
+import static cc.echarger.echarger.util.UnitConversionUtil.dp2px;
 
 public class MoveBoxUtil {
     private float originY;   //手指初始坐标
@@ -28,13 +31,14 @@ public class MoveBoxUtil {
 
     private boolean isLow=true; //上拉框是否在低位
 
+    private TopNaviUtil topNaviUtil;
 
-    public static float dp2px(Context context, float dpValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return  (dpValue * scale + 0.5f);
+
+    public void setTopNaviUtil(TopNaviUtil topNaviUtil) {
+        this.topNaviUtil = topNaviUtil;
     }
 
-    private void translateAnimation(View view,float startPosition,float endPosition){
+    private void translateAnimation(View view, float startPosition, float endPosition){
         ValueAnimator animator = ValueAnimator.ofFloat(startPosition,endPosition);
         animator.setDuration(300);//播放时长
 
@@ -43,7 +47,6 @@ public class MoveBoxUtil {
             public void onAnimationUpdate(ValueAnimator animation) {
 
                 float currentValue = (float) animation.getAnimatedValue();
-
                 view.setY(currentValue);
 
                 //刷新视图
@@ -53,27 +56,31 @@ public class MoveBoxUtil {
         //启动动画
         animator.start();
     }
+
     @SuppressLint("ClickableViewAccessibility")
     public MoveBoxUtil(Activity context) {
 
-        Display display = context.getWindowManager().getDefaultDisplay();
-        Point point = new Point();
-        display.getSize(point);
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        int height = displayMetrics.heightPixels;
 
         //获取status_bar_height资源的ID
         int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         statusBarHeight = context.getResources().getDimensionPixelSize(resourceId);
         Log.e("-------", "状态栏-方法1:" + statusBarHeight);
 
-        screenHeight = display.getHeight()+statusBarHeight;
+        screenHeight = height+statusBarHeight;
 
         heightUpperBounds=screenHeight-dp2px(context,700)+statusBarHeight/2;
         heightLowerBounds=screenHeight-dp2px(context,100+20+20)+statusBarHeight/2;
         offsetHeight=heightLowerBounds-heightUpperBounds;
 
         MovableLinearLayout moveBox = context.findViewById(R.id.move_box);
-        moveBox.setY(heightLowerBounds);
 
+        Log.e("TAG", ":"+heightLowerBounds );
+        Log.e("TAG", "MoveBoxUtil: "+moveBox.getY() );
+
+        moveBox.setY(heightLowerBounds);
+        Log.e("TAG", "MoveBoxUtil: "+moveBox.getY() );
         moveBox.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
@@ -101,6 +108,7 @@ public class MoveBoxUtil {
                             if(-finalOffsetY>=offsetHeight*0.25){
                                 isLow=false;
                                 translateAnimation(moveBox,moveBox.getY(),heightUpperBounds);
+                                topNaviUtil.foldAnimation(false);
                             }else{
                                 translateAnimation(moveBox,moveBox.getY(),heightLowerBounds);
                             }
@@ -109,6 +117,7 @@ public class MoveBoxUtil {
                             if(finalOffsetY>=offsetHeight*0.25) {
                                 isLow=true;
                                 translateAnimation(moveBox,moveBox.getY(),heightLowerBounds);
+                                topNaviUtil.foldAnimation(true);
                             }else{
                                 translateAnimation(moveBox,moveBox.getY(),heightUpperBounds);
                             }
