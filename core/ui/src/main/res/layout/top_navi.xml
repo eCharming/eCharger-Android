@@ -30,7 +30,7 @@
                     android:layout_height="wrap_content"
                     android:text="上海"
                     android:textColor="@color/white"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textStyle="bold"
             />
             <TextView
@@ -47,11 +47,11 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/radius5"
-                android:text="易插"
+                android:background="@drawable/radius_all8_white"
+                android:text="@string/app_name"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
-                android:textSize="17dp"
+                android:textSize="17sp"
                 android:textStyle="bold"
         />
     </LinearLayout>
@@ -66,7 +66,7 @@
                 android:id="@+id/bottom_bar"
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
-                android:background="@drawable/radius6"
+                android:background="@drawable/radius_bl10_br10_sub1"
                 android:clipChildren="false"
 
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -92,7 +92,7 @@
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="10dp"
-                    android:background="@drawable/radius7"
+                    android:background="@drawable/radius_tl40_tr40_sub1"
                     android:layout_alignParentBottom="true"
                     android:clipChildren="false"
             >
@@ -104,7 +104,6 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:layout_marginRight="-3dp"
                         android:background="@color/sub_color1"
-
                 />
                 <TextView
                     android:layout_width="20dp"
@@ -112,8 +111,7 @@
                     app:layout_constraintRight_toLeftOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginRight="-3dp"
-                    android:background="@drawable/radius9"
-
+                    android:background="@drawable/radius_all20_main1"
                 />
                 <TextView
                         android:layout_width="20dp"
@@ -122,7 +120,6 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:layout_marginLeft="-3dp"
                         android:background="@color/sub_color1"
-
                 />
                 <TextView
                         android:layout_width="20dp"
@@ -130,8 +127,7 @@
                         app:layout_constraintLeft_toRightOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:layout_marginLeft="-3dp"
-                        android:background="@drawable/radius10"
-
+                        android:background="@drawable/radius_bl20_main1"
                 />
 
                 <TextView
@@ -141,7 +137,7 @@
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/radius8"
+                        android:background="@drawable/radius_all30_main1"
                 />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -157,7 +153,6 @@
                         android:layout_height="70dp"
                         android:layout_weight="1"
                         android:clipChildren="false"
-
                 >
                     <ImageView
                             android:layout_width="50dp"
@@ -168,11 +163,11 @@
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="订单"
+                            android:text="@string/order"
                             android:textColor="@color/white"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="-30dp"
-                            android:textSize="16dp"
+                            android:textSize="16sp"
                             android:textStyle="bold"
                     />
                 </RelativeLayout>
@@ -182,7 +177,6 @@
                         android:layout_height="70dp"
                         android:layout_weight="1"
                         android:clipChildren="false"
-
                 >
                     <ImageView
                             android:layout_width="50dp"
@@ -192,11 +186,11 @@
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="聊天"
+                            android:text="@string/chat"
                             android:textColor="@color/white"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="-30dp"
-                            android:textSize="16dp"
+                            android:textSize="16sp"
                             android:textStyle="bold"
                     />
                 </RelativeLayout>
@@ -206,7 +200,6 @@
                         android:layout_height="70dp"
                         android:layout_weight="1"
                         android:clipChildren="false"
-
                 >
                     <ImageView
                             android:layout_width="50dp"
@@ -217,11 +210,11 @@
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="发现"
+                            android:text="@string/explore"
                             android:textColor="@color/white"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="-30dp"
-                            android:textSize="16dp"
+                            android:textSize="16sp"
                             android:textStyle="bold"
                     />
                 </RelativeLayout>
@@ -231,7 +224,6 @@
                         android:layout_height="70dp"
                         android:layout_weight="1"
                         android:clipChildren="false"
-
                 >
                     <ImageView
                             android:layout_width="50dp"
@@ -242,11 +234,11 @@
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="我的"
+                            android:text="@string/my"
                             android:textColor="@color/white"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="-30dp"
-                            android:textSize="16dp"
+                            android:textSize="16sp"
                             android:textStyle="bold"
                     />
                 </RelativeLayout>
@@ -255,5 +247,5 @@
         </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    
+
 </LinearLayout>

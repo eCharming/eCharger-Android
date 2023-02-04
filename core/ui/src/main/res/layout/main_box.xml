@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<cc.echarger.echarger.component.MovableLinearLayout
+<cc.echarger.echarger.ui.component.MovableLinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/move_box"
         android:layout_width="match_parent"
         android:layout_height="700dp"
-        android:background="@drawable/radius"
+        android:background="@drawable/radius_tl20_tr20_grey100"
         android:orientation="vertical">
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_margin="15dp"
-                    android:background="@drawable/radius4">
+                    android:background="@drawable/radius_all8_white_stroke4_main1">
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
                         android:layout_marginRight="10dp"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:text="租电桩"/>
+                        android:text="@string/rent_charger"/>
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="0dp"
                         android:textSize="12sp"
-                        android:text="租电桩"/>
+                        android:text="@string/rent_charger_detail"/>
             </LinearLayout>
             <LinearLayout
                     android:layout_width="match_parent"
@@ -53,7 +53,7 @@
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_margin="15dp"
-                    android:background="@drawable/radius4">
+                    android:background="@drawable/radius_all8_white_stroke4_main1">
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
                         android:layout_marginRight="10dp"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:text="租电桩"/>
+                        android:text="@string/share_charger"/>
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="0dp"
                         android:textSize="12sp"
-                        android:text="租电桩"/>
+                        android:text="@string/share_charger_detail"/>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -95,7 +95,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:textSize="18dp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="@color/main_color1"
                         android:text="1月30日星期一"/>
@@ -106,31 +106,31 @@
                         android:orientation="horizontal"
                         android:gravity="right">
                     <TextView
-                            android:text="起始时间"
+                            android:text="@string/start_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="7dp"
-                            android:background="@drawable/radius3"
+                            android:background="@drawable/radius_all8_grey100"
                             android:layout_marginRight="10dp"/>
                     <TextView
-                            android:text="结束时间"
+                            android:text="@string/end_time"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:padding="7dp"
-                            android:background="@drawable/radius3"/>
+                            android:background="@drawable/radius_all8_grey100"/>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:background="@drawable/radius3"
+                    android:background="@drawable/radius_all8_grey100"
                     android:orientation="vertical">
 
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="请输入你的目的地"
+                        android:text="@string/destination"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:padding="9dp"/>
@@ -148,4 +148,4 @@
             android:layout_marginRight="20dp">
 
     </androidx.cardview.widget.CardView>
-</cc.echarger.echarger.component.MovableLinearLayout>
+</cc.echarger.echarger.ui.component.MovableLinearLayout>
