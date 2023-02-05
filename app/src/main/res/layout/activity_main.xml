@@ -8,16 +8,24 @@
         android:background="@color/white"
         android:clipChildren="false"
 >
-    <cc.echarger.echarger.ui.component.TopNavi android:layout_width="match_parent"
-                                               android:layout_height="match_parent"
-                                               android:id="@+id/top_navi"
-                                               app:layout_constraintTop_toTopOf="parent"
-                                               app:layout_constraintLeft_toLeftOf="parent"
-                                               app:layout_constraintRight_toRightOf="parent"/>
+    <com.baidu.mapapi.map.MapView
+            android:id="@+id/bmapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"/>
+    <cc.echarger.echarger.ui.component.TopNavi
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/top_navi"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
     <include
             layout="@layout/main_box"
             app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:id="@+id/include"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
