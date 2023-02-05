@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import cc.echarger.echarger.ui.util.UnitConversionUtil;
 
 public class MovableLinearLayout extends LinearLayout {
-    private Context context; //上下文
+    private final Context context; //上下文
     private float originY;   //手指初始坐标
     private float lastY;    //上一个坐标
     private float boxY;   //模块的起始坐标
@@ -20,7 +20,8 @@ public class MovableLinearLayout extends LinearLayout {
     private float heightLowerBounds; //下限高度
     private float offsetHeight; //上下限高度差
     private boolean isLow = true; //上拉框是否在低位
-//    private TopNaviUtil topNaviUtil;
+
+    private TopNavi topNavi;
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -77,7 +78,7 @@ public class MovableLinearLayout extends LinearLayout {
                         if (-finalOffsetY >= offsetHeight * 0.25) {
                             isLow = false;
                             translateAnimation(this.getY(), heightUpperBounds);
-//                            topNaviUtil.foldAnimation(false);
+                            topNavi.foldAnimation(false);
                         } else {
                             translateAnimation(this.getY(), heightLowerBounds);
                         }
@@ -85,7 +86,7 @@ public class MovableLinearLayout extends LinearLayout {
                         if (finalOffsetY >= offsetHeight * 0.25) {
                             isLow = true;
                             translateAnimation(this.getY(), heightLowerBounds);
-//                            topNaviUtil.foldAnimation(true);
+                            topNavi.foldAnimation(true);
                         } else {
                             translateAnimation(this.getY(), heightUpperBounds);
                         }
@@ -95,9 +96,9 @@ public class MovableLinearLayout extends LinearLayout {
         });
     }
 
-    //    public void setTopNaviUtil(TopNaviUtil topNaviUtil) {
-//        this.topNaviUtil = topNaviUtil;
-//    }
+    public void setTopNavi(TopNavi topNavi){
+        this.topNavi = topNavi;
+    }
 
     private void translateAnimation(float startPosition, float endPosition) {
         ValueAnimator animator = ValueAnimator.ofFloat(startPosition, endPosition);

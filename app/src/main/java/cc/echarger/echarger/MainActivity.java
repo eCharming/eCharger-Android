@@ -1,10 +1,11 @@
 package cc.echarger.echarger;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import cc.echarger.echarger.databinding.ActivityMainBinding;
-import cc.echarger.echarger.ui.util.MoveBoxUtil;
+import cc.echarger.echarger.ui.component.MovableLinearLayout;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -17,15 +18,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-
         StatusBar statusBar = new StatusBar(MainActivity.this);
         //设置颜色为透明
         statusBar.setColor(R.color.transparent);
 
-
-        TopNaviUtil topNaviUtil = new TopNaviUtil(MainActivity.this);
-//        View mainBox=View.inflate(this,R.layout.main_box,null);  //拿到layout main_box
-//        View moveBox=mainBox.findViewById(R.id.move_box);  //拿到main_box中的控件move_box
+        MovableLinearLayout moveBox = findViewById(R.id.include);
+        moveBox.setTopNavi(findViewById(R.id.top_navi));
     }
 
 

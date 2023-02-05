@@ -5,19 +5,19 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black"
+        android:background="@color/white"
         android:clipChildren="false"
 >
-    <include
-            layout="@layout/top_navi"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-    />
+    <cc.echarger.echarger.ui.component.TopNavi android:layout_width="match_parent"
+                                               android:layout_height="match_parent"
+                                               android:id="@+id/top_navi"
+                                               app:layout_constraintTop_toTopOf="parent"
+                                               app:layout_constraintLeft_toLeftOf="parent"
+                                               app:layout_constraintRight_toRightOf="parent"/>
     <include
             layout="@layout/main_box"
             app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-    />
+            android:id="@+id/include"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
