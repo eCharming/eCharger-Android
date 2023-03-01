@@ -15,10 +15,10 @@ import com.tencent.map.geolocation.TencentLocation;
 import com.tencent.map.geolocation.TencentLocationListener;
 import com.tencent.map.geolocation.TencentLocationManager;
 import com.tencent.map.geolocation.TencentLocationRequest;
-import com.tencent.tencentmap.mapsdk.maps.LocationSource;
-import com.tencent.tencentmap.mapsdk.maps.MapView;
-import com.tencent.tencentmap.mapsdk.maps.TencentMap;
-import com.tencent.tencentmap.mapsdk.maps.TencentMapOptions;
+import com.tencent.tencentmap.mapsdk.maps.*;
+import com.tencent.tencentmap.mapsdk.maps.model.CameraPosition;
+import com.tencent.tencentmap.mapsdk.maps.model.LatLng;
+import com.tencent.tencentmap.mapsdk.maps.model.MyLocationStyle;
 
 public class MapLifecycleObserver implements DefaultLifecycleObserver, TencentLocationListener, LocationSource {
 
@@ -26,9 +26,12 @@ public class MapLifecycleObserver implements DefaultLifecycleObserver, TencentLo
     private MapView mMapView;
     private TencentLocationManager mLocationManager;
     private OnLocationChangedListener locationChangedListener;
+    private TencentMap mTencentMap;
     private TencentLocationRequest locationRequest;
 
     private MainActivity activity;
+
+    private boolean isFirstTry = true;
 
     @Override
     public void onCreate(@NonNull LifecycleOwner owner) {
@@ -72,23 +75,26 @@ public class MapLifecycleObserver implements DefaultLifecycleObserver, TencentLo
 
     public void initMap(Activity context) {
         mMapView = context.findViewById(R.id.tmapView);
-        TencentMap mTencentMap = mMapView.getMap();
-        ((TopNavi)context.findViewById(R.id.top_navi)).registerMap(mTencentMap);
+        mTencentMap = mMapView.getMap();
+        ((TopNavi) context.findViewById(R.id.top_navi)).registerMap(mTencentMap);
         mTencentMap.getUiSettings().setLogoPosition(
                 TencentMapOptions.LOGO_POSITION_TOP_LEFT,
                 new int[]{600, 50});
         mTencentMap.setBuildingEnable(false);
+        // 发起定位请求
         mLocationManager = TencentLocationManager.getInstance(context.getApplicationContext());
         locationRequest = TencentLocationRequest.create();
         locationRequest.setInterval(3000);
         locationRequest.setAllowDirection(true);
         locationRequest.setIndoorLocationMode(true);
-
         mLocationManager.requestLocationUpdates(locationRequest, this);
-        //地图上设置定位数据源
+        // 设置定位源
         mTencentMap.setLocationSource(this);
-        //设置当前位置可见
         mTencentMap.setMyLocationEnabled(true);
+        // 防止地图自动居中
+        MyLocationStyle myLocationStyle = new MyLocationStyle();
+        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE_NO_CENTER);
+        mTencentMap.setMyLocationStyle(myLocationStyle);
     }
 
     @Override
@@ -104,6 +110,17 @@ public class MapLifecycleObserver implements DefaultLifecycleObserver, TencentLo
             location.setBearing(tencentLocation.getBearing());
             //将位置信息返回给地图
             locationChangedListener.onLocationChanged(location);
+        }
+        // 初次加载将视野居中
+        if (isFirstTry) {
+            CameraUpdate cameraSigma =
+                    CameraUpdateFactory.newCameraPosition(new CameraPosition(
+                            new LatLng(tencentLocation.getLatitude(), tencentLocation.getLongitude()),
+                            19,
+                            0,
+                            0));
+            mTencentMap.moveCamera(cameraSigma);
+            isFirstTry = false;
         }
     }
 
