@@ -10,6 +10,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import cc.echarger.echarger.MainActivity;
 import cc.echarger.echarger.R;
+import cc.echarger.echarger.ui.component.TopNavi;
 import com.tencent.map.geolocation.TencentLocation;
 import com.tencent.map.geolocation.TencentLocationListener;
 import com.tencent.map.geolocation.TencentLocationManager;
@@ -17,6 +18,7 @@ import com.tencent.map.geolocation.TencentLocationRequest;
 import com.tencent.tencentmap.mapsdk.maps.LocationSource;
 import com.tencent.tencentmap.mapsdk.maps.MapView;
 import com.tencent.tencentmap.mapsdk.maps.TencentMap;
+import com.tencent.tencentmap.mapsdk.maps.TencentMapOptions;
 
 public class MapLifecycleObserver implements DefaultLifecycleObserver, TencentLocationListener, LocationSource {
 
@@ -71,6 +73,10 @@ public class MapLifecycleObserver implements DefaultLifecycleObserver, TencentLo
     public void initMap(Activity context) {
         mMapView = context.findViewById(R.id.tmapView);
         TencentMap mTencentMap = mMapView.getMap();
+        ((TopNavi)context.findViewById(R.id.top_navi)).registerMap(mTencentMap);
+        mTencentMap.getUiSettings().setLogoPosition(
+                TencentMapOptions.LOGO_POSITION_TOP_LEFT,
+                new int[]{600, 50});
         mTencentMap.setBuildingEnable(false);
         mLocationManager = TencentLocationManager.getInstance(context.getApplicationContext());
         locationRequest = TencentLocationRequest.create();
@@ -109,8 +115,7 @@ public class MapLifecycleObserver implements DefaultLifecycleObserver, TencentLo
     @Override
     public void activate(OnLocationChangedListener onLocationChangedListener) {
         locationChangedListener = onLocationChangedListener;
-        int err = mLocationManager.requestLocationUpdates(
-                locationRequest, this, Looper.myLooper());
+        int err = mLocationManager.requestLocationUpdates(locationRequest, this, Looper.myLooper());
         switch (err) {
             case 1:
                 Toast.makeText(activity, "设备缺少使用腾讯定位服务需要的基本条件", Toast.LENGTH_SHORT).show();
