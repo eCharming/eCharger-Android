@@ -147,5 +147,11 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
 
+        <cc.echarger.echarger.ui.component.Charger
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/main_color2"
+        />
+
     </androidx.cardview.widget.CardView>
 </cc.echarger.echarger.ui.component.MovableLinearLayout>
