@@ -7,9 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import cc.echarger.echarger.databinding.ActivityMainBinding;
 import cc.echarger.echarger.lifecycle.MapLifecycleObserver;
 import cc.echarger.echarger.ui.component.MovableLinearLayout;
-import com.baidu.location.LocationClient;
-import com.baidu.mapapi.CoordType;
-import com.baidu.mapapi.SDKInitializer;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -23,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initSDK();
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         StatusBar statusBar = new StatusBar(MainActivity.this);
         statusBar.setColor(R.color.transparent);
@@ -31,19 +27,13 @@ public class MainActivity extends AppCompatActivity {
         MovableLinearLayout moveBox = findViewById(R.id.include);
         moveBox.setTopNavi(findViewById(R.id.top_navi));
         getLifecycle().addObserver(mapLifecycleObserver);
+
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-    }
-
-    private void initSDK() {
-        LocationClient.setAgreePrivacy(true);
-        SDKInitializer.setAgreePrivacy(getApplicationContext(), true);
-        SDKInitializer.initialize(getApplicationContext());
-        SDKInitializer.setCoordType(CoordType.BD09LL);
     }
 
     @AfterPermissionGranted(RC_MAP)

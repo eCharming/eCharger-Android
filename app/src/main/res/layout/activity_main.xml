@@ -6,10 +6,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:clipChildren="false"
->
-    <com.baidu.mapapi.map.MapView
-            android:id="@+id/bmapView"
+        android:clipChildren="false">
+    <com.tencent.tencentmap.mapsdk.maps.MapView
+            android:id="@+id/tmapView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true"/>

@@ -4,6 +4,7 @@ import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -12,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import cc.echarger.echarger.ui.R;
 import cc.echarger.echarger.ui.util.UnitConversionUtil;
+import com.tencent.tencentmap.mapsdk.maps.TencentMap;
+import com.tencent.tencentmap.mapsdk.maps.TencentMapOptions;
 
 public class TopNavi extends ConstraintLayout {
 
@@ -24,6 +27,12 @@ public class TopNavi extends ConstraintLayout {
     private ConstraintLayout choiceBall;
     private ConstraintLayout foldBar;
     private int screenWidth; //屏幕宽度
+
+    private TencentMap tencentMap;
+
+    public void registerMap(TencentMap tencentMap) {
+        this.tencentMap = tencentMap;
+    }
 
     public TopNavi(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -150,6 +159,9 @@ public class TopNavi extends ConstraintLayout {
             int currentValue = (int) animation.getAnimatedValue();
             layoutParams.setMargins(0, currentValue, 0, 0);
             foldBar.setLayoutParams(layoutParams);
+            tencentMap.getUiSettings().setLogoPosition(
+                    TencentMapOptions.LOGO_POSITION_TOP_LEFT,
+                    new int[]{foldBar.getBottom()+80, 50});
             //刷新视图
             foldBar.requestLayout();
         });
