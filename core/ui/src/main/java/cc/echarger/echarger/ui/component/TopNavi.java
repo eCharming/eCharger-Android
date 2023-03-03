@@ -15,6 +15,9 @@ import cc.echarger.echarger.ui.R;
 import cc.echarger.echarger.ui.util.UnitConversionUtil;
 import com.tencent.tencentmap.mapsdk.maps.TencentMap;
 import com.tencent.tencentmap.mapsdk.maps.TencentMapOptions;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class TopNavi extends ConstraintLayout {
 
@@ -50,6 +53,30 @@ public class TopNavi extends ConstraintLayout {
         setClickListener(chat, 2);
         setClickListener(find, 3);
         setClickListener(my, 4);
+
+        //注册事件
+        try {
+            EventBus.getDefault().register(this);
+        }catch (Exception e){
+            Log.e("TAG", "TopNavi: 注册失败");
+            throw e;
+        }
+
+    }
+
+
+    //注销事件
+    @Override
+    protected void onDetachedFromWindow() {
+
+        super.onDetachedFromWindow();
+        EventBus.getDefault().unregister(this);
+    }
+
+    //订阅处理函数
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void onMovingMainBox(Boolean isLow){
+        foldAnimation(isLow);
     }
 
     private void setClickListener(View view, int choice) {

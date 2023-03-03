@@ -2,6 +2,7 @@ package cc.echarger.echarger;
 
 import android.Manifest;
 import android.os.Bundle;
+import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import cc.echarger.echarger.databinding.ActivityMainBinding;
@@ -24,8 +25,6 @@ public class MainActivity extends AppCompatActivity {
         StatusBar statusBar = new StatusBar(MainActivity.this);
         statusBar.setColor(R.color.transparent);
         setContentView(binding.getRoot());
-        MovableLinearLayout moveBox = findViewById(R.id.include);
-        moveBox.setTopNavi(findViewById(R.id.top_navi));
         getLifecycle().addObserver(mapLifecycleObserver);
 
     }

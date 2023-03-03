@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
 import cc.echarger.echarger.ui.component.TopNavi;
 import cc.echarger.echarger.ui.util.UnitConversionUtil;
+import org.greenrobot.eventbus.EventBus;
 
 public class MovableLinearLayout extends LinearLayout {
     private final Context context; //上下文
@@ -21,8 +22,6 @@ public class MovableLinearLayout extends LinearLayout {
     private float heightLowerBounds; //下限高度
     private float offsetHeight; //上下限高度差
     private boolean isLow = true; //上拉框是否在低位
-
-    private TopNavi topNavi;
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -79,7 +78,8 @@ public class MovableLinearLayout extends LinearLayout {
                         if (-finalOffsetY >= offsetHeight * 0.25) {
                             isLow = false;
                             translateAnimation(this.getY(), heightUpperBounds);
-                            topNavi.foldAnimation(false);
+                            //发布事件
+                            EventBus.getDefault().post(false);
                         } else {
                             translateAnimation(this.getY(), heightLowerBounds);
                         }
@@ -87,7 +87,8 @@ public class MovableLinearLayout extends LinearLayout {
                         if (finalOffsetY >= offsetHeight * 0.25) {
                             isLow = true;
                             translateAnimation(this.getY(), heightLowerBounds);
-                            topNavi.foldAnimation(true);
+                            //发布事件
+                            EventBus.getDefault().post(true);
                         } else {
                             translateAnimation(this.getY(), heightUpperBounds);
                         }
@@ -95,10 +96,6 @@ public class MovableLinearLayout extends LinearLayout {
             }
             return true;
         });
-    }
-
-    public void setTopNavi(TopNavi topNavi){
-        this.topNavi = topNavi;
     }
 
     private void translateAnimation(float startPosition, float endPosition) {
