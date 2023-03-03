@@ -1,13 +1,15 @@
 package cc.echarger.echarger;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import cc.echarger.echarger.databinding.ActivityMainBinding;
 import cc.echarger.echarger.lifecycle.MapLifecycleObserver;
-import cc.echarger.echarger.ui.layout.MovableLinearLayout;
+import cc.echarger.echarger.lifecycle.MockLifecycleObserver;
+import cc.echarger.echarger.ui.component.MovableLinearLayout;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final MapLifecycleObserver mapLifecycleObserver = new MapLifecycleObserver();
 
+    @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
         statusBar.setColor(R.color.transparent);
         setContentView(binding.getRoot());
         getLifecycle().addObserver(mapLifecycleObserver);
-
+        // Only For Test
+        getLifecycle().addObserver(new MockLifecycleObserver());
     }
 
     @Override
