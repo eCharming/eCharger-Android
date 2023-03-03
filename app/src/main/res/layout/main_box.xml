@@ -150,7 +150,6 @@
         <cc.echarger.echarger.ui.component.Charger
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/main_color2"
         />
 
     </androidx.cardview.widget.CardView>

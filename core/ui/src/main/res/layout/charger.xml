@@ -5,9 +5,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@color/main_color2"
 >
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/info_page"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
