@@ -1,4 +1,4 @@
-package cc.echarger.echarger.ui.component;
+package cc.echarger.echarger.ui.layout;
 
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
+import cc.echarger.echarger.ui.component.TopNavi;
 import cc.echarger.echarger.ui.util.UnitConversionUtil;
 
 public class MovableLinearLayout extends LinearLayout {

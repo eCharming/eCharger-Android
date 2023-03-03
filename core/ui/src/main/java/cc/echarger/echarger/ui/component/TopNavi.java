@@ -45,6 +45,7 @@ public class TopNavi extends ConstraintLayout {
         foldBar = findViewById(R.id.fold_bar);
         screenWidth = context.getResources().getDisplayMetrics().widthPixels;
         this.context = context;
+        alterChoiceAnimation(1, 1);
         setClickListener(order, 1);
         setClickListener(chat, 2);
         setClickListener(find, 3);
@@ -120,11 +121,19 @@ public class TopNavi extends ConstraintLayout {
 
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(300);
-        animatorSet.play(choiceBallAnimator)
-                .with(lastChoiceAnimator)
-                .with(currentChoiceAnimator)
-                .with(lastTextAnimator).
-                with(currentTextAnimator);
+
+        if(lastChoice!=0){
+            animatorSet.play(choiceBallAnimator)
+                    .with(lastChoiceAnimator)
+                    .with(currentChoiceAnimator)
+                    .with(lastTextAnimator)
+                    .with(currentTextAnimator);
+        }else{
+            animatorSet.play(currentChoiceAnimator)
+                    .with(currentTextAnimator);
+        }
+
+
         //启动动画
         animatorSet.start();
     }

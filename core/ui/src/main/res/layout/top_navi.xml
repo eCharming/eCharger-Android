@@ -161,7 +161,7 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_centerInParent="true"
-                                android:background="@color/main_color2"
+                                android:src="@drawable/order_green"
                         />
                         <TextView
                                 android:layout_width="wrap_content"
@@ -184,7 +184,7 @@
                         <ImageView
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
-                                android:background="@color/main_color2"
+                                android:src="@drawable/order_green"
                                 android:layout_centerInParent="true"/>
                         <TextView
                                 android:layout_width="wrap_content"
@@ -195,6 +195,7 @@
                                 android:layout_marginTop="-30dp"
                                 android:textSize="16sp"
                                 android:textStyle="bold"
+                                android:alpha="0"
                         />
                     </RelativeLayout>
                     <RelativeLayout
@@ -208,7 +209,7 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_centerInParent="true"
-                                android:background="@color/main_color2"
+                                android:src="@drawable/order_green"
                         />
                         <TextView
                                 android:layout_width="wrap_content"
@@ -219,6 +220,7 @@
                                 android:layout_marginTop="-30dp"
                                 android:textSize="16sp"
                                 android:textStyle="bold"
+                                android:alpha="0"
                         />
                     </RelativeLayout>
                     <RelativeLayout
@@ -232,7 +234,7 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_centerInParent="true"
-                                android:background="@color/main_color2"
+                                android:src="@drawable/order_green"
                         />
                         <TextView
                                 android:layout_width="wrap_content"
@@ -243,6 +245,7 @@
                                 android:layout_marginTop="-30dp"
                                 android:textSize="16sp"
                                 android:textStyle="bold"
+                                android:alpha="0"
                         />
                     </RelativeLayout>
                 </LinearLayout>

@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import cc.echarger.echarger.databinding.ActivityMainBinding;
 import cc.echarger.echarger.lifecycle.MapLifecycleObserver;
-import cc.echarger.echarger.ui.component.MovableLinearLayout;
+import cc.echarger.echarger.ui.layout.MovableLinearLayout;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
