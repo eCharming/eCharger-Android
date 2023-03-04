@@ -1,8 +1,9 @@
 package cc.echarger.echarger.network;
 
+import cc.echarger.echarger.network.loader.BaseResponse;
 import cc.echarger.echarger.network.exception.BadRequestException;
 import io.reactivex.functions.Function;
-
+@Deprecated
 public class PayLoad<T> implements Function<BaseResponse<T>, T> {
 
     @Override

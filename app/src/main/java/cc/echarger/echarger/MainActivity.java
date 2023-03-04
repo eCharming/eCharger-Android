@@ -3,13 +3,17 @@ package cc.echarger.echarger;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
 import cc.echarger.echarger.databinding.ActivityMainBinding;
 import cc.echarger.echarger.lifecycle.MapLifecycleObserver;
-import cc.echarger.echarger.lifecycle.MockLifecycleObserver;
-import cc.echarger.echarger.ui.component.MovableLinearLayout;
+import cc.echarger.echarger.network.dto.MockDto;
+import cc.echarger.echarger.network.loader.BaseResponse;
+import cc.echarger.echarger.viewmodel.MockViewModel;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -18,19 +22,37 @@ import static cc.echarger.echarger.lifecycle.MapLifecycleObserver.RC_MAP;
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
+    private MockViewModel mockViewModel;
+
     private final MapLifecycleObserver mapLifecycleObserver = new MapLifecycleObserver();
 
     @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+//        binding = ActivityMainBinding.inflate(getLayoutInflater());
         StatusBar statusBar = new StatusBar(MainActivity.this);
         statusBar.setColor(R.color.transparent);
         setContentView(binding.getRoot());
         getLifecycle().addObserver(mapLifecycleObserver);
-        // Only For Test
-        getLifecycle().addObserver(new MockLifecycleObserver());
+
+        //通过ViewModelProvider得到ViewModel
+        mockViewModel = new ViewModelProvider(this).get(MockViewModel.class);
+        binding.setMockViewModel(mockViewModel);
+        testMock();
+        mockViewModel.getLiveDataLoginEntity();
+    }
+
+    private void testMock() {
+        LiveData<BaseResponse<MockDto>> mockLiveData = mockViewModel.getLiveDataLoginEntity();
+        mockLiveData.observe(MainActivity.this, mockDto -> {
+            if (mockDto.isSuccess()) {
+                Toast.makeText(MainActivity.this, mockDto.getData().name, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(MainActivity.this, "Fail", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

@@ -1,4 +1,4 @@
-package cc.echarger.echarger.network;
+package cc.echarger.echarger.network.loader;
 
 public class BaseResponse<T> {
 

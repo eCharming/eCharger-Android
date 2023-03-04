@@ -3,7 +3,6 @@ package cc.echarger.echarger.network;
 import cc.echarger.echarger.network.intercepter.HttpCommonInterceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.fastjson.FastJsonConverterFactory;
 
 import java.util.concurrent.TimeUnit;
@@ -32,7 +31,8 @@ public class RetrofitServiceManager {
         // 创建Retrofit
         mRetrofit = new Retrofit.Builder()
                 .client(builder.build())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(new LiveDataCallAdapterFactory())
                 .addConverterFactory(FastJsonConverterFactory.create())
                 .baseUrl(ApiConfig.BASE_URL)
                 .build();
