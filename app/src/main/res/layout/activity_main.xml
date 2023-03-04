@@ -1,40 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
->
-    <data>
-        <variable
-                name="mockViewModel"
-                type="cc.echarger.echarger.viewmodel.MockViewModel"/>
-    </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/main"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:clipChildren="false">
+    <com.tencent.tencentmap.mapsdk.maps.MapView
+            android:id="@+id/tmapView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
-            android:clipChildren="false">
-        <com.tencent.tencentmap.mapsdk.maps.MapView
-                android:id="@+id/tmapView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clickable="true"/>
-        <cc.echarger.echarger.ui.component.TopNavi
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/top_navi"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"/>
-        <cc.echarger.echarger.ui.component.MainBox
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                android:id="@+id/include"/>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
-
+            android:clickable="true"/>
+    <cc.echarger.echarger.ui.component.TopNavi
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/top_navi"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+    <cc.echarger.echarger.ui.component.MainBox
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:id="@+id/main_box"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

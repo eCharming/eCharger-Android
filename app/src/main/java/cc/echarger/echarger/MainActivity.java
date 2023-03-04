@@ -6,23 +6,28 @@ import android.os.Bundle;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import cc.echarger.echarger.databinding.ActivityMainBinding;
 import cc.echarger.echarger.lifecycle.MapLifecycleObserver;
+import cc.echarger.echarger.model.vo.ChargerVo;
 import cc.echarger.echarger.network.dto.MockDto;
 import cc.echarger.echarger.network.loader.BaseResponse;
+import cc.echarger.echarger.ui.databinding.ChargerBinding;
+import cc.echarger.echarger.viewmodel.ChargerListViewModel;
 import cc.echarger.echarger.viewmodel.MockViewModel;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
+import java.util.List;
+
 import static cc.echarger.echarger.lifecycle.MapLifecycleObserver.RC_MAP;
 
 public class MainActivity extends AppCompatActivity {
-    private ActivityMainBinding binding;
-
-    private MockViewModel mockViewModel;
+    private ActivityMainBinding activityMainBinding;
+    private ChargerBinding chargerBinding;
+    private ChargerListViewModel chargerListViewModel;
 
     private final MapLifecycleObserver mapLifecycleObserver = new MapLifecycleObserver();
 
@@ -30,29 +35,29 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-//        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         StatusBar statusBar = new StatusBar(MainActivity.this);
         statusBar.setColor(R.color.transparent);
-        setContentView(binding.getRoot());
+        setContentView(activityMainBinding.getRoot());
         getLifecycle().addObserver(mapLifecycleObserver);
 
-        //通过ViewModelProvider得到ViewModel
-        mockViewModel = new ViewModelProvider(this).get(MockViewModel.class);
-        binding.setMockViewModel(mockViewModel);
-        testMock();
-        mockViewModel.getLiveDataLoginEntity();
-    }
+        List<ChargerVo> chargerVoList = activityMainBinding.mainBox.getChargerVoList();
 
-    private void testMock() {
-        LiveData<BaseResponse<MockDto>> mockLiveData = mockViewModel.getLiveDataLoginEntity();
-        mockLiveData.observe(MainActivity.this, mockDto -> {
-            if (mockDto.isSuccess()) {
-                Toast.makeText(MainActivity.this, mockDto.getData().name, Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(MainActivity.this, "Fail", Toast.LENGTH_SHORT).show();
+        chargerListViewModel = new ViewModelProvider(this).get(ChargerListViewModel.class);
+        MockViewModel mockViewModel = new ViewModelProvider(this).get(MockViewModel.class);
+        LiveData<BaseResponse<MockDto>> liveDataLoginEntity = mockViewModel.getLiveDataLoginEntity();
+        liveDataLoginEntity.observe(this, mockDto -> {
+            Toast.makeText(this, mockDto.getData().name, Toast.LENGTH_SHORT).show();
+        });
+        chargerListViewModel.getMutableChargers().observe(this, new Observer<List<ChargerVo>>() {
+            @Override
+            public void onChanged(List<ChargerVo> chargerVos) {
+                chargerVoList.clear();
+                chargerVoList.addAll(chargerVos);
+                activityMainBinding.mainBox.getAdapter().notifyDataSetChanged();
             }
         });
+        chargerListViewModel.getChargers(this);
     }
 
     @Override

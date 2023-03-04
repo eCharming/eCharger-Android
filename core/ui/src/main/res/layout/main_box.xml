@@ -179,11 +179,12 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
-
-        <cc.echarger.echarger.ui.component.Charger
+        <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-        />
+                android:layout_height="match_parent"
+                android:id="@+id/recycle_view">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.cardview.widget.CardView>
 </cc.echarger.echarger.ui.layout.MovableLinearLayout>
